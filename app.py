@@ -27,16 +27,14 @@ def model(bedrooms,bathrooms,sqft_living,sqft_lot,floors,waterfront,view,conditi
         print('R2 Square', r2_square)
         print('__________________________________')
 
-    # y_pred = model.predict(X_test)
-    # print_evaluate(Y_test, y_pred);
-
     print(X_train.info())
     data_income = np.array([(bedrooms,bathrooms,sqft_living,sqft_lot,floors,waterfront,view,condition)])
     data_pred = model.predict(data_income)
     return int(data_pred)
 
+st.image('house.png')
 st.title("House Price Prediction App")
-st.subheader('')
+st.write('Linear Regression algorithm is used.')
 
 #Text Input
 bedrooms = st.text_input("Number of Bedrooms", '')
@@ -48,8 +46,7 @@ waterfront = st.text_input("Number of waterfront", '')
 view = st.text_input("Number of View", '')
 condition = st.text_input("Number of Condition", '')
 
-if st.button("Submit"):
+if st.button("Predict Price"):
     result = model(bedrooms,bathrooms,sqft_living,sqft_lot,floors,waterfront,view,condition)
+    result = 'Predicted Price is $' + str(result)
     st.success(result)
-
-# model(2,3,1300,2400,2,0,1,3)
